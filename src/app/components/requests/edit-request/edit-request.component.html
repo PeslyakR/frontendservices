@@ -1,0 +1,30 @@
+<p>edit-request works!</p>
+
+<form [formGroup]="reqForm" novalidate (ngSubmit)="onSubmit()">
+  <input type="text" hidden formControlName="id" />
+  <input type="text" hidden formControlName="idAuthor" />
+  <input type="text" hidden formControlName="idService" />
+  <fieldset>
+    <label for="header">Заголовок</label>
+    <input
+      type="text"
+      id="header"
+      placeholder="заголовок запроса"
+      formControlName="header"
+    />
+  </fieldset>
+
+  <fieldset>
+    <label for="body">Запрос</label>
+    <input
+      type="text"
+      id="body"
+      placeholder="текст запроса"
+      formControlName="body"
+    />
+  </fieldset>
+
+  <button class="auth-form__btn btn-primary" type="submit">
+    Редактировать
+  </button>
+</form>

@@ -1,0 +1,33 @@
+<p>редактировать должность</p>
+<button (click)="onDeletePosition()">удалить</button>
+<form [formGroup]="editPositionForm" novalidate (ngSubmit)="onSavePosition()">
+  <input hidden type="text" formControlName="id" />
+
+  <input hidden type="text" formControlName="idDep" />
+  <input hidden type="text" formControlName="updated" />
+
+  <fieldset>
+    <label for="title">Название </label>
+    <input
+      type="text"
+      id="title"
+      placeholder="Название должности"
+      formControlName="title"
+    />
+  </fieldset>
+
+  <fieldset>
+    <label for="description">Описание</label>
+    <textarea
+      formControlName="description"
+      id="description"
+      cols="30"
+      rows="10"
+      placeholder="краткая информация"
+    ></textarea>
+  </fieldset>
+
+  <button class="auth-form__btn btn-primary" type="submit">
+    сохранить изменения
+  </button>
+</form>

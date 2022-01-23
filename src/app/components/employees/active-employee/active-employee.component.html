@@ -1,0 +1,61 @@
+<p>active employee</p>
+
+<h2>{{ (employee$ | async)?.fullName }}</h2>
+<p>{{ (employee$ | async)?.address }}</p>
+<p>{{ (employee$ | async)?.beginWorking | date: "" }}</p>
+<p>Доступные задачи</p>
+<button (click)="editEmployee()">редактировать</button>
+<button [ngClass]="{ invisible: !formVisible }" (click)="deleteEmplooyee()">
+  удалять
+</button>
+<ul>
+  <li *ngFor="let role of (employee$ | async)?.roles">
+    {{ role.name }}
+  </li>
+</ul>
+<a routerLink="/requests/{{ (employee$ | async)?.id }}">запросы</a>
+<br />
+
+<div [ngClass]="{ invisible: !formVisible }">
+  <fieldset>
+    <label for="department">управление</label>
+    <select [(ngModel)]="idDep" (ngModelChange)="getPositions($event)">
+      <option *ngFor="let dep of departments$ | async" [ngValue]="dep.id">
+        {{ dep.title }}
+      </option>
+    </select>
+
+    <label for="position">должность</label>
+    <select [(ngModel)]="position">
+      <option
+        *ngFor="let position of positions$ | async"
+        [ngValue]="position.id"
+      >
+        {{ position.title }}
+      </option>
+    </select>
+  </fieldset>
+  <form [formGroup]="Employeeform" novalidate (ngSubmit)="onSubmit()">
+    <fieldset>
+      <label for="name">Имя работника</label>
+      <input type="text" id="name" formControlName="fullName" />
+    </fieldset>
+
+    <fieldset>
+      <label for="address">адресс:</label>
+      <input type="text" id="address" formControlName="address" />
+    </fieldset>
+
+    <fieldset>
+      <label for="beginWorking">Принят на работу</label>
+      <input type="date" id="beginWorking" formControlName="beginWorking" />
+    </fieldset>
+
+    <fieldset>
+      <label for="endWorking">Уволен с работы</label>
+      <input type="date" id="endWorking" formControlName="endWorking" />
+    </fieldset>
+
+    <button type="submit">Сохранить изменения</button>
+  </form>
+</div>

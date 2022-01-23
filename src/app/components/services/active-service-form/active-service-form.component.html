@@ -1,0 +1,66 @@
+<h2>{{ (service$ | async)?.title }}</h2>
+<p>Краткая информация об сервисе: {{ (service$ | async)?.description }}</p>
+
+<button (click)="onDelete()">delete</button>
+
+<button (click)="editeService()">edit</button>
+
+<div
+  *ngIf="(service$ | async)?.roles?.length !== 0; then listRoles; else noRoles"
+></div>
+<ng-template #listRoles>
+  <table>
+    <thead>
+      <tr>
+        <td>Роль</td>
+        <td>Доступные задачи</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let role of (service$ | async)?.roles">
+        <td>
+          <a routerLink="/role/{{ (service$ | async)?.id }}/{{ role.id }}">{{
+            role.name
+          }}</a>
+        </td>
+        <td>{{ role.description }}</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <button routerLink="/role/{{ (service$ | async)?.id }}">add Role</button>
+    </tfoot>
+  </table>
+</ng-template>
+<ng-template #noRoles>
+  <p>нету дступных ролей</p>
+  <button routerLink="/role/{{ (service$ | async)?.id }}">add Role</button>
+</ng-template>
+
+<div [ngClass]="{ invisible: !formVisible }">
+  <form [formGroup]="form" novalidate (ngSubmit)="onSavingEdit()">
+    <input type="text" hidden formControlName="id" />
+
+    <fieldset>
+      <label for="title">Название</label>
+      <input
+        type="text"
+        id="title"
+        placeholder="Название сервиса"
+        formControlName="title"
+      />
+    </fieldset>
+
+    <fieldset>
+      <label for="description">Описание</label>
+      <textarea
+        formControlName="description"
+        id="description"
+        cols="30"
+        rows="10"
+        placeholder="Название сервиса"
+      ></textarea>
+    </fieldset>
+
+    <button type="submit">Сохранить изменения</button>
+  </form>
+</div>

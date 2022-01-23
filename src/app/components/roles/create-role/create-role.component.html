@@ -1,0 +1,36 @@
+<p>create-role</p>
+
+<form [formGroup]="form" novalidate (ngSubmit)="onSubmit()">
+  <fieldset>
+    <label for="name">Название</label>
+    <input
+      type="text"
+      id="name"
+      placeholder="Название роли"
+      formControlName="name"
+    />
+  </fieldset>
+
+  <fieldset>
+    <label for="title">Служебное название</label>
+    <input
+      type="text"
+      id="title"
+      placeholder="Служебное название роли"
+      formControlName="title"
+    />
+  </fieldset>
+
+  <fieldset>
+    <label for="description">Описание</label>
+    <textarea
+      formControlName="description"
+      id="description"
+      cols="30"
+      rows="10"
+      placeholder="Название сервиса"
+    ></textarea>
+  </fieldset>
+
+  <button type="submit">Сохранить изменения</button>
+</form>

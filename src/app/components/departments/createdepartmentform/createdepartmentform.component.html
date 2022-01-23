@@ -1,0 +1,26 @@
+<p>Добавление департамента</p>
+
+<form [formGroup]="form" novalidate (ngSubmit)="onSubmit()">
+  <fieldset class="auth-form__field">
+    <label for="title">Название</label>
+    <input
+      type="text"
+      id="title"
+      placeholder="Название управление"
+      formControlName="title"
+    />
+  </fieldset>
+
+  <fieldset class="auth-form__field">
+    <label for="description">Описание</label>
+    <textarea
+      formControlName="description"
+      id="description"
+      cols="30"
+      rows="10"
+      placeholder="Название управление"
+    ></textarea>
+  </fieldset>
+
+  <button class="auth-form__btn btn-primary" type="submit">Добавить</button>
+</form>

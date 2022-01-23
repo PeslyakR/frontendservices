@@ -1,0 +1,105 @@
+<div>
+  <h2>{{ department$?.title }}</h2>
+  <p>Короткая информация об управлении: {{ department$?.description }}</p>
+  <button (click)="editDepartment()">edit</button>
+  <button (click)="onDelete()">delete</button>
+</div>
+<br />
+<button routerLink="/position">add position</button>
+
+<div
+  *ngIf="
+    department$?.positions?.length !== 0;
+    then listPositions;
+    else noPositions
+  "
+></div>
+<ng-template #listPositions>
+  <p>Для добавление сотрудника выберите должность</p>
+  <ul>
+    <li *ngFor="let pos of department$?.positions">
+      <div class="split">
+        <a routerLink="/employee/{{ pos.id }}">{{ pos.title }}</a>
+        <button (click)="onEdit(pos.id!)">Редактировать/удалить</button>
+      </div>
+    </li>
+  </ul>
+</ng-template>
+<ng-template #noPositions>
+  <p>В отделе нету ни одной должности</p>
+</ng-template>
+<s-error-messages
+  *ngIf="backendErrors$ | async"
+  [backendErrors]="backendErrors$ | async"
+>
+</s-error-messages>
+<div
+  *ngIf="
+    department$?.employees?.length !== 0;
+    then listEmployees;
+    else noEmployees
+  "
+></div>
+<ng-template #listEmployees>
+  <table>
+    <thead>
+      <tr>
+        <td>ФИО</td>
+        <td>адресс</td>
+        <td>Должность</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let emp of department$?.employees">
+        <td>
+          <a routerLink="/employee/{{ department$?.id }}/{{ emp.id }}">
+            {{ emp.fullName }}
+          </a>
+        </td>
+        <td>{{ emp.address }}</td>
+        <td>{{ emp.position }}</td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>
+<ng-template #noEmployees>
+  <p>В департамента нету ни одного сотрудника</p>
+</ng-template>
+
+<div [ngClass]="{ invisible: !formVisible }">
+  <!-- [ngClass]="{ invisible: formVisible }" -->
+  <!-- <ul>
+    <li *ngFor="let errorMessage of errs">{{ errorMessage }}</li>
+  </ul> -->
+
+  <form [formGroup]="form" novalidate (ngSubmit)="onSavingEdit()">
+    <fieldset class="auth-form__field">
+      <input hidden type="text" formControlName="id" />
+    </fieldset>
+
+    <fieldset class="auth-form__field">
+      <label for="title">Название</label>
+      <input
+        type="text"
+        id="title"
+        placeholder="Название управление"
+        formControlName="title"
+      />
+    </fieldset>
+
+    <fieldset class="auth-form__field">
+      <label for="description">Описание</label>
+      <textarea
+        formControlName="description"
+        id="description"
+        cols="30"
+        rows="10"
+        placeholder="Название управление"
+      ></textarea>
+    </fieldset>
+
+    <button class="auth-form__btn btn-primary" type="submit">
+      Редактировать
+    </button>
+  </form>
+</div>

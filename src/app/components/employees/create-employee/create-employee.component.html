@@ -1,0 +1,30 @@
+<p>create employee</p>
+
+<form [formGroup]="form" novalidate (ngSubmit)="onSubmit()">
+  <fieldset>
+    <label for="fullname">ФИО сотрудника</label>
+    <input
+      type="text"
+      id="fullname"
+      placeholder="Имя Фамилия Отчество"
+      formControlName="fullName"
+    />
+  </fieldset>
+
+  <fieldset>
+    <label for="address">адресс</label>
+    <input
+      type="text"
+      id="address"
+      placeholder="ул. Улица, д.1 кв.1"
+      formControlName="address"
+    />
+  </fieldset>
+
+  <fieldset>
+    <label for="beginWorking">Дата начала работы</label>
+    <input type="date" id="beginWorking" formControlName="beginWorking" />
+  </fieldset>
+
+  <button type="submit">Сохранить изменения</button>
+</form>

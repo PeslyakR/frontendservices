@@ -1,0 +1,10 @@
+<p>requests list</p>
+
+<a routerLink="/addrequest">add new req</a>
+<ul>
+  <li *ngFor="let req of requests$ | async">
+    <a routerLink="/request" (click)="onSelectReques(req.id!)">
+      {{ req.header }}
+    </a>
+  </li>
+</ul>

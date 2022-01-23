@@ -1,0 +1,34 @@
+<p>create-request works!</p>
+
+<h2>
+  запрос на получение доступа для сотрудника {{ (employee$ | async)?.fullName }}
+</h2>
+
+<fieldset>
+  <label for="position">Сервисы</label>
+  <select [(ngModel)]="serviceId">
+    <option disabled [ngValue]="null">сервис не выбран</option>
+    <option *ngFor="let service of services$ | async" [ngValue]="service.id">
+      {{ service.title }}
+    </option>
+  </select>
+</fieldset>
+<form [formGroup]="requestForm" novalidate (ngSubmit)="onSaveRequest()">
+  <fieldset>
+    <label for="header">Имя работника</label>
+    <input type="text" id="header" formControlName="header" />
+  </fieldset>
+
+  <fieldset class="auth-form__field">
+    <label for="body">Описание</label>
+    <textarea
+      formControlName="body"
+      id="body"
+      cols="30"
+      rows="10"
+      placeholder="Суть запроса"
+    ></textarea>
+  </fieldset>
+
+  <button type="submit">Сохранить запрос</button>
+</form>
