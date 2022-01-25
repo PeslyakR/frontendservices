@@ -9,6 +9,14 @@
       placeholder="Имя Фамилия Отчество"
       formControlName="fullName"
     />
+    <div
+      class="alert alert-danger"
+      *ngIf="
+        form.controls['fullName'].invalid && form.controls['fullName'].touched
+      "
+    >
+      Поле обязательно для заполнения и не может превышать 50 символов
+    </div>
   </fieldset>
 
   <fieldset>
@@ -26,5 +34,7 @@
     <input type="date" id="beginWorking" formControlName="beginWorking" />
   </fieldset>
 
-  <button type="submit">Сохранить изменения</button>
+  <button class="btn btn-default" [disabled]="form.invalid" type="submit">
+    Сохранить изменения
+  </button>
 </form>

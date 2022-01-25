@@ -38,7 +38,7 @@ export class ActiveServiceFormComponent implements OnInit {
     this.requests$ = this.store.pipe(select(selectAllRequests));
     this.form = this.fb.group({
       id: [''],
-      title: ['', Validators.required],
+      title: ['', Validators.required, Validators.maxLength(50)],
       description: [''],
     });
   }
@@ -48,7 +48,7 @@ export class ActiveServiceFormComponent implements OnInit {
   }
   onDelete(): void {
     this.store.dispatch(deleteServiceAction({ id: this.id }));
-    this.router.navigate(['/']);
+    this.router.navigate(['/response']);
   }
   editeService(): void {
     this.formVisible = !this.formVisible;
@@ -68,7 +68,7 @@ export class ActiveServiceFormComponent implements OnInit {
       description: this.form.value.description,
       updated: this.updated,
     };
-    this.router.navigate(['/services']);
+    this.router.navigate(['/response']);
     this.store.dispatch(updateServiceAction({ service }));
   }
 }

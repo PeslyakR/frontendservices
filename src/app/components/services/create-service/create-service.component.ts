@@ -22,7 +22,7 @@ export class CreateServiceComponent implements OnInit {
     private router: Router
   ) {
     this.form = this.fb.group({
-      title: ['', Validators.required],
+      title: ['', Validators.required, Validators.maxLength(50)],
       description: [''],
     });
   }
@@ -34,6 +34,6 @@ export class CreateServiceComponent implements OnInit {
       description: this.form.value.description,
     };
     this.store.dispatch(createServiceAction({ service }));
-    this.router.navigate(['/']);
+    this.router.navigate(['/response']);
   }
 }

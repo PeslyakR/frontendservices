@@ -17,6 +17,15 @@
   <fieldset>
     <label for="header">Имя работника</label>
     <input type="text" id="header" formControlName="header" />
+    <div
+      class="alert alert-danger"
+      *ngIf="
+        requestForm.controls['header'].invalid &&
+        requestForm.controls['header'].touched
+      "
+    >
+      Поле обязательно для заполнения и не может превышать 50 символов
+    </div>
   </fieldset>
 
   <fieldset class="auth-form__field">
@@ -28,7 +37,22 @@
       rows="10"
       placeholder="Суть запроса"
     ></textarea>
+    <div
+      class="alert alert-danger"
+      *ngIf="
+        requestForm.controls['body'].invalid &&
+        requestForm.controls['body'].touched
+      "
+    >
+      Поле обязательно для заполнения и не может превышать 50 символов
+    </div>
   </fieldset>
 
-  <button type="submit">Сохранить запрос</button>
+  <button
+    class="btn btn-default"
+    [disabled]="requestForm.invalid"
+    type="submit"
+  >
+    Сохранить запрос
+  </button>
 </form>

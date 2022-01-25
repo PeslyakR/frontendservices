@@ -2,17 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
 import {
   deleteDepAction,
   findDepAction,
   updateDepAction,
 } from 'src/app/store/content/actions/departments.actions';
 import { findPositionAction } from 'src/app/store/content/actions/positions.action';
-import {
-  gettingActiveDepartmentSelector,
-  validationDepsErrorsSelector,
-} from 'src/app/store/content/selectors/deps.selectors';
+import { gettingActiveDepartmentSelector } from 'src/app/store/content/selectors/deps.selectors';
 import { IDepartment } from 'src/app/store/content/types/departments/Department.interface';
 
 @Component({
@@ -22,7 +18,6 @@ import { IDepartment } from 'src/app/store/content/types/departments/Department.
 })
 export class ActivedepartmentformComponent implements OnInit {
   department$!: IDepartment | undefined;
-  backendErrors$!: Observable<string[] | undefined>;
   form!: FormGroup;
   formVisible: boolean = false;
   constructor(
@@ -57,7 +52,7 @@ export class ActivedepartmentformComponent implements OnInit {
     this.store.dispatch(
       deleteDepAction({ id: this.route.snapshot.params['id'] })
     );
-    this.router.navigate(['/']);
+    this.router.navigate(['/response']);
   }
 
   editDepartment(): void {
@@ -65,7 +60,10 @@ export class ActivedepartmentformComponent implements OnInit {
     if (this.department$) {
       this.form = this.fb.group({
         id: [this.department$.id || 0],
-        title: [this.department$.title, [Validators.required]],
+        title: [
+          this.department$.title,
+          [Validators.required, Validators.maxLength(50)],
+        ],
         description: [this.department$?.description],
       });
     }
@@ -79,9 +77,8 @@ export class ActivedepartmentformComponent implements OnInit {
     };
     this.store.dispatch(updateDepAction({ department }));
 
-    this.backendErrors$ = this.store.pipe(select(validationDepsErrorsSelector));
-
     this.formVisible = !this.formVisible;
+    this.router.navigate(['/response']);
   }
   onEdit(id: number): void {
     this.store.dispatch(findPositionAction({ id }));

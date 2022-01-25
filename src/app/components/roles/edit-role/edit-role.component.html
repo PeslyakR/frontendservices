@@ -13,6 +13,12 @@
       placeholder="Название роли"
       formControlName="name"
     />
+    <div
+      class="alert alert-danger"
+      *ngIf="form.controls['name'].invalid && form.controls['name'].touched"
+    >
+      Поле обязательно для заполнения и не может превышать 50 символов
+    </div>
   </fieldset>
 
   <fieldset>

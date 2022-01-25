@@ -30,7 +30,7 @@ export class EditPositionComponent implements OnInit {
           id: [pos?.id],
           idDep: [pos?.id],
           updated: [pos?.updated],
-          title: [pos?.title, Validators.required],
+          title: [pos?.title, Validators.required, Validators.maxLength(50)],
           description: [pos?.description],
         }))
     );
@@ -45,7 +45,8 @@ export class EditPositionComponent implements OnInit {
       description: this.editPositionForm.value.description,
     };
     this.store.dispatch(updatePositionAction({ position }));
-    this.router.navigate(['/department/' + this.editPositionForm.value.idDep]);
+    //this.router.navigate(['/department/' + this.editPositionForm.value.idDep]);
+    this.router.navigate(['/response']);
   }
 
   onDeletePosition(): void {
@@ -56,6 +57,6 @@ export class EditPositionComponent implements OnInit {
     this.store.dispatch(
       deletePositionAction({ id: this.editPositionForm.value.id })
     );
-    this.router.navigate(['/departments']);
+    this.router.navigate(['/response']);
   }
 }

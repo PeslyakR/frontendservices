@@ -22,7 +22,7 @@ export class CreatePositionComponent implements OnInit {
     private router: Router
   ) {
     this.form = this.fb.group({
-      title: ['', Validators.required],
+      title: ['', Validators.required, Validators.maxLength(50)],
       description: [''],
     });
   }
@@ -39,6 +39,6 @@ export class CreatePositionComponent implements OnInit {
     };
 
     this.store.dispatch(createPositionAction({ position }));
-    this.router.navigate(['/departments']);
+    this.router.navigate(['/response']);
   }
 }

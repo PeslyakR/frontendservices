@@ -39,6 +39,15 @@
     <fieldset>
       <label for="name">Имя работника</label>
       <input type="text" id="name" formControlName="fullName" />
+      <div
+        class="alert alert-danger"
+        *ngIf="
+          Employeeform.controls['fullName'].invalid &&
+          Employeeform.controls['fullName'].touched
+        "
+      >
+        Поле обязательно для заполнения
+      </div>
     </fieldset>
 
     <fieldset>
@@ -56,6 +65,12 @@
       <input type="date" id="endWorking" formControlName="endWorking" />
     </fieldset>
 
-    <button type="submit">Сохранить изменения</button>
+    <button
+      class="btn btn-default"
+      [disabled]="Employeeform.invalid"
+      type="submit"
+    >
+      Сохранить изменения
+    </button>
   </form>
 </div>

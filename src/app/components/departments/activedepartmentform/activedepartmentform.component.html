@@ -28,11 +28,6 @@
 <ng-template #noPositions>
   <p>В отделе нету ни одной должности</p>
 </ng-template>
-<s-error-messages
-  *ngIf="backendErrors$ | async"
-  [backendErrors]="backendErrors$ | async"
->
-</s-error-messages>
 <div
   *ngIf="
     department$?.employees?.length !== 0;
@@ -67,11 +62,6 @@
 </ng-template>
 
 <div [ngClass]="{ invisible: !formVisible }">
-  <!-- [ngClass]="{ invisible: formVisible }" -->
-  <!-- <ul>
-    <li *ngFor="let errorMessage of errs">{{ errorMessage }}</li>
-  </ul> -->
-
   <form [formGroup]="form" novalidate (ngSubmit)="onSavingEdit()">
     <fieldset class="auth-form__field">
       <input hidden type="text" formControlName="id" />
@@ -85,6 +75,12 @@
         placeholder="Название управление"
         formControlName="title"
       />
+      <div
+        class="alert alert-danger"
+        *ngIf="form.controls['title'].invalid && form.controls['title'].touched"
+      >
+        Поле обязательно для заполнения и не может превышать 50 символов
+      </div>
     </fieldset>
 
     <fieldset class="auth-form__field">
@@ -98,7 +94,7 @@
       ></textarea>
     </fieldset>
 
-    <button class="auth-form__btn btn-primary" type="submit">
+    <button class="btn btn-default" [disabled]="form.invalid" type="submit">
       Редактировать
     </button>
   </form>

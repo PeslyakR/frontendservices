@@ -14,6 +14,15 @@
       placeholder="Название должности"
       formControlName="title"
     />
+    <div
+      class="alert alert-danger"
+      *ngIf="
+        editPositionForm.controls['title'].invalid &&
+        editPositionForm.controls['title'].touched
+      "
+    >
+      Поле обязательно для заполнения и не может превышать 50 символов
+    </div>
   </fieldset>
 
   <fieldset>
@@ -27,7 +36,11 @@
     ></textarea>
   </fieldset>
 
-  <button class="auth-form__btn btn-primary" type="submit">
+  <button
+    class="btn btn-default"
+    [disabled]="editPositionForm.invalid"
+    type="submit"
+  >
     сохранить изменения
   </button>
 </form>

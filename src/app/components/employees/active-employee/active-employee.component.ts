@@ -67,6 +67,7 @@ export class ActiveEmployeeComponent implements OnInit {
       updated: this.updated,
     };
     this.store.dispatch(updateEmployeeAction({ employee }));
+    this.router.navigate(['/response']);
   }
 
   editEmployee(): void {
@@ -90,10 +91,12 @@ export class ActiveEmployeeComponent implements OnInit {
 
   getPositions(idDep: number): void {
     this.store.dispatch(findPositionsAction({ idDep }));
+    console.log('asdasdasd');
 
     this.positions$ = this.store.pipe(select(selectActionPositions));
   }
   deleteEmplooyee(): void {
     this.store.dispatch(deleteEmployeeAction({ id: this.id! }));
+    this.router.navigate(['/response']);
   }
 }

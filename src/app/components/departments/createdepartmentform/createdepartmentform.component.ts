@@ -22,7 +22,7 @@ export class CreatedepartmentformComponent implements OnInit {
     private router: Router
   ) {
     this.form = this.fb.group({
-      title: ['', Validators.required],
+      title: ['', Validators.required, Validators.maxLength(50)],
       description: [''],
     });
   }
@@ -36,6 +36,6 @@ export class CreatedepartmentformComponent implements OnInit {
     };
     this.store.dispatch(createDepAction({ department }));
 
-    this.router.navigate(['/']);
+    this.router.navigate(['/response']);
   }
 }

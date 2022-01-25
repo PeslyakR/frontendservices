@@ -77,10 +77,9 @@ export class ConfirmRequestComponent implements OnInit {
       idReq: this.requestId,
       idRoles: this.confirmForm.value.roles,
     };
-    console.log('confirmRequest ', confirmRequest);
 
     this.store.dispatch(confirmRequestAction({ confirmRequest }));
-    this.router.navigate(['/']);
+    this.router.navigate(['/response']);
   }
   showServices(): void {
     this.servicesVisible = !this.servicesVisible;

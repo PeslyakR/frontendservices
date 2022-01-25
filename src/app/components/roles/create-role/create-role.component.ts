@@ -23,8 +23,8 @@ export class CreateRoleComponent implements OnInit {
     private router: Router
   ) {
     this.form = this.fb.group({
-      title: ['', Validators.required],
-      name: ['', Validators.required],
+      title: ['', Validators.required, Validators.maxLength(50)],
+      name: ['', Validators.required, Validators.maxLength(50)],
       description: [''],
     });
   }
@@ -38,6 +38,6 @@ export class CreateRoleComponent implements OnInit {
       description: this.form.value.description,
     };
     this.store.dispatch(createRoleAction({ role }));
-    this.router.navigate(['/services']);
+    this.router.navigate(['/response']);
   }
 }

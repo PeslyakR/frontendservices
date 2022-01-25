@@ -14,7 +14,6 @@ import { IBackendErrors } from 'src/app/store/sharedtypes/BackendErrors.interfac
 })
 export class CreateEmployeeComponent implements OnInit {
   form!: FormGroup;
-  backendErrors4!: Observable<IBackendErrors | undefined>;
   positionId!: number;
   id?: number;
   updated?: string;
@@ -41,6 +40,6 @@ export class CreateEmployeeComponent implements OnInit {
       beginWorking: this.form.value.beginWorking,
     };
     this.store.dispatch(createEmployeeAction({ employee }));
-    this.router.navigate(['/departments']);
+    this.router.navigate(['/response']);
   }
 }

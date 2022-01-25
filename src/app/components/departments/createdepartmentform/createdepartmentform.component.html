@@ -4,11 +4,18 @@
   <fieldset class="auth-form__field">
     <label for="title">Название</label>
     <input
+      class="form-control"
       type="text"
       id="title"
       placeholder="Название управление"
       formControlName="title"
     />
+    <div
+      class="alert alert-danger"
+      *ngIf="form.controls['title'].invalid && form.controls['title'].touched"
+    >
+      Поле обязательно для заполнения и не может превышать 50 символов
+    </div>
   </fieldset>
 
   <fieldset class="auth-form__field">
@@ -22,5 +29,7 @@
     ></textarea>
   </fieldset>
 
-  <button class="auth-form__btn btn-primary" type="submit">Добавить</button>
+  <button class="btn btn-default" [disabled]="form.invalid" type="submit">
+    Добавить
+  </button>
 </form>

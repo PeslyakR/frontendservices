@@ -9,6 +9,12 @@
       placeholder="Название сервиса"
       formControlName="title"
     />
+    <div
+      class="alert alert-danger"
+      *ngIf="form.controls['title'].invalid && form.controls['title'].touched"
+    >
+      Поле обязательно для заполнения и не может превышать 50 символов
+    </div>
   </fieldset>
 
   <fieldset>
@@ -22,5 +28,7 @@
     ></textarea>
   </fieldset>
 
-  <button type="submit">Сохранить изменения</button>
+  <button class="btn btn-default" [disabled]="form.invalid" type="submit">
+    Сохранить изменения
+  </button>
 </form>

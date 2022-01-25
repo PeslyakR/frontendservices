@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 import { createRequestAction } from 'src/app/store/content/actions/requests.action';
 import { findServicesAction } from 'src/app/store/content/actions/services.actions';
 import { gettingActiveEmployeeSelector } from 'src/app/store/content/selectors/employee.selector';
@@ -21,23 +22,23 @@ export class CreateRequestComponent implements OnInit {
   services$!: Observable<IService[] | undefined>;
   serviceId!: number;
 
-  constructor(private fb: FormBuilder, private store: Store) {
+  constructor(
+    private fb: FormBuilder,
+    private store: Store,
+    private router: Router
+  ) {
     this.requestForm = this.fb.group({
       header: ['', Validators.required],
       body: ['', Validators.required],
     });
-    console.log('create request constructor');
   }
 
   ngOnInit(): void {
-    console.log('create request ngOnInit');
     this.employee$ = this.store.pipe(select(gettingActiveEmployeeSelector));
     this.store.dispatch(findServicesAction());
     this.services$ = this.store.pipe(select(selectAllServices));
   }
   onSaveRequest(): void {
-    console.log('create request onSubmit');
-
     this.employee$.subscribe((e) => {
       const request: IRequest = {
         idService: this.serviceId,
@@ -46,6 +47,7 @@ export class CreateRequestComponent implements OnInit {
         idAuthor: e!.id!,
       };
       this.store.dispatch(createRequestAction({ request }));
+      this.router.navigate(['/response']);
     });
   }
 }
