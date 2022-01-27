@@ -1,5 +1,4 @@
 import { createReducer, on, Action } from '@ngrx/store';
-import { getRolesActionFailure } from '../actions/roles.actions';
 import {
   createServiceAction,
   deleteServiceAction,
@@ -66,16 +65,5 @@ export const serviceReducer = createReducer(
       ...state,
       services: action.services,
     })
-  ),
-  on(
-    getRolesActionFailure,
-    (state, action): IServiceState => ({
-      ...state,
-      validationErrors: action.errors,
-    })
   )
 );
-
-// export function serviceReducers(state: IServiceState, action: Action) {
-//   return contentReducer(state, action);
-// }

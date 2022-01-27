@@ -8,7 +8,7 @@ import {
   isAuthorized,
   validationErrorsSelector,
 } from 'src/app/store/auth/selectors/selectors';
-import { IBackendErrors } from 'src/app/store/sharedtypes/BackendErrors.interface';
+import { IBackendErrors } from 'src/app/store/content/types/errors/BackendErrors.interface';
 import { ILoginData } from '../types/LoginData.interface';
 
 @Component({

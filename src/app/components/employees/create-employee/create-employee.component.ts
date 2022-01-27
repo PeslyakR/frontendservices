@@ -2,10 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
 import { createEmployeeAction } from 'src/app/store/content/actions/employees.action';
 import { IEmployee } from 'src/app/store/content/types/employees/Employee.interface';
-import { IBackendErrors } from 'src/app/store/sharedtypes/BackendErrors.interface';
 
 @Component({
   selector: 'app-create-employee',

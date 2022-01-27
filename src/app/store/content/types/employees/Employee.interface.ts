@@ -5,13 +5,13 @@ export interface IEmployee {
   id?: number;
   fullName: string;
   address: string;
-  position?: IPosition;
-  positionId: number;
   beginWorking: Date;
   endWorking?: Date;
+  position?: IPosition;
+  positionId: number;
   status?: string;
-  login?: string;
-  password?: string;
+  username?: string;
+  idUser?: number;
   updated?: string;
   roles?: IRole[];
 }

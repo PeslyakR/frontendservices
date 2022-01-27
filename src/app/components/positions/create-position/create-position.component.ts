@@ -22,7 +22,7 @@ export class CreatePositionComponent implements OnInit {
     private router: Router
   ) {
     this.form = this.fb.group({
-      title: ['', Validators.required, Validators.maxLength(50)],
+      title: ['', [Validators.required, Validators.maxLength(50)]],
       description: [''],
     });
   }

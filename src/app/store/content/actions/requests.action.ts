@@ -48,10 +48,10 @@ export const getRequestActionSuccess = createAction(
   props<{ request: IRequest }>()
 );
 
-export const getRequestsActionFailure = createAction(
-  ERequestsActionTypes.ERROR,
-  props<{ errors: string[] }>()
-);
+// export const getRequestsActionFailure = createAction(
+//   ERequestsActionTypes.ERROR,
+//   props<{ errors: string[] }>()
+// );
 
 export const deleteRequestActionSuccess = createAction(
   ERequestsActionTypes.SUCCESS_DELETE,

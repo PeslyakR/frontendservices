@@ -2,6 +2,7 @@ import { ActionReducerMap, combineReducers } from '@ngrx/store';
 import { authReducer } from '../../auth/reducers/reducers';
 import { departmentReducer } from './departments.reducers';
 import { employeeReducer } from './employee.reducers';
+import { errorsReducer } from './errors.reducers';
 import { positionReducer } from './positions.reducers';
 import { requestReducer } from './request.reducers';
 import { roleReducer } from './role.reducers';
@@ -17,4 +18,5 @@ export const reducers = combineReducers({
   service: serviceReducer,
   user: userReducer,
   auth: authReducer,
+  errors: errorsReducer,
 });

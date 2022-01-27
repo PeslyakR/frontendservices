@@ -16,6 +16,7 @@ import { formatDate } from '@angular/common';
 import { findPositionsAction } from 'src/app/store/content/actions/positions.action';
 import { IDepartment } from 'src/app/store/content/types/departments/Department.interface';
 import { gettingDepartmentsSelector } from 'src/app/store/content/selectors/deps.selectors';
+import { deleteUserAction } from 'src/app/store/content/actions/users.action';
 
 @Component({
   selector: 'app-active-employee',
@@ -48,6 +49,16 @@ export class ActiveEmployeeComponent implements OnInit {
       beginWorking: [formatDate(Date.now(), 'yyyy-MM-dd', 'en')],
       endWorking: [formatDate(Date.now(), 'yyyy-MM-dd', 'en')],
     });
+  }
+
+  deleteUser(): void {
+    this.employee$.subscribe((e) => {
+      console.log(e?.idUser!);
+
+      this.store.dispatch(deleteUserAction({ id: e?.idUser! }));
+    });
+
+    this.router.navigate(['/response']);
   }
 
   ngOnInit(): void {
@@ -91,7 +102,6 @@ export class ActiveEmployeeComponent implements OnInit {
 
   getPositions(idDep: number): void {
     this.store.dispatch(findPositionsAction({ idDep }));
-    console.log('asdasdasd');
 
     this.positions$ = this.store.pipe(select(selectActionPositions));
   }

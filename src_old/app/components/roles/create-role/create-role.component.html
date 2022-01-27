@@ -1,0 +1,50 @@
+<p>create-role</p>
+
+<form [formGroup]="form" novalidate (ngSubmit)="onSubmit()">
+  <fieldset>
+    <label for="name">Название</label>
+    <input
+      type="text"
+      id="name"
+      placeholder="Название роли"
+      formControlName="name"
+    />
+    <div
+      class="alert alert-danger"
+      *ngIf="form.controls['name'].invalid && form.controls['name'].touched"
+    >
+      Поле обязательно для заполнения и не может превышать 50 символов
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <label for="title">Служебное название</label>
+    <input
+      type="text"
+      id="title"
+      placeholder="Служебное название роли"
+      formControlName="title"
+    />
+    <div
+      class="alert alert-danger"
+      *ngIf="form.controls['title'].invalid && form.controls['title'].touched"
+    >
+      Поле обязательно для заполнения и не может превышать 50 символов
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <label for="description">Описание</label>
+    <textarea
+      formControlName="description"
+      id="description"
+      cols="30"
+      rows="10"
+      placeholder="Название сервиса"
+    ></textarea>
+  </fieldset>
+
+  <button class="btn btn-default" [disabled]="form.invalid" type="submit">
+    Сохранить изменения
+  </button>
+</form>

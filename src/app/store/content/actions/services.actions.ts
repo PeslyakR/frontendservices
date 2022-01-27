@@ -1,5 +1,4 @@
 import { createAction, props } from '@ngrx/store';
-import { IBackendErrors } from '../../sharedtypes/BackendErrors.interface';
 import { IService } from '../types/services/Service.interface';
 import { EServicesActionTypes } from '../types/services/ServicesActionTypes.enum';
 
@@ -35,10 +34,10 @@ export const getServicesActionSuccess = createAction(
   props<{ services: IService[] }>()
 );
 
-export const getActionFailure = createAction(
-  EServicesActionTypes.ERROR,
-  props<{ errors: IBackendErrors }>()
-);
+// export const getActionFailure = createAction(
+//   EServicesActionTypes.ERROR,
+//   props<{ errors: string[] }>()
+// );
 
 export const deleteServiceActionSuccess = createAction(
   EServicesActionTypes.SUCCESS_DELETE,

@@ -1,5 +1,4 @@
 import { createAction, props } from '@ngrx/store';
-import { IBackendErrors } from '../../sharedtypes/BackendErrors.interface';
 import { IRole } from '../types/roles/Role.interface';
 import { ERolesActiveTypes } from '../types/roles/RolesActionTypes.enum';
 
@@ -38,10 +37,10 @@ export const getRoleActionSuccess = createAction(
   props<{ role: IRole }>()
 );
 
-export const getRolesActionFailure = createAction(
-  ERolesActiveTypes.ERROR,
-  props<{ errors: string[] }>()
-);
+// export const getRolesActionFailure = createAction(
+//   ERolesActiveTypes.ERROR,
+//   props<{ errors: string[] }>()
+// );
 
 export const deleteRoleActionSuccess = createAction(
   ERolesActiveTypes.ERROR,

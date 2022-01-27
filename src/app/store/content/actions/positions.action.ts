@@ -38,10 +38,10 @@ export const getPositionsActionSuccess = createAction(
   props<{ positions: IPosition[] }>()
 );
 
-export const getPostitionsActionFailure = createAction(
-  EPositionsActionTypes.ERROR,
-  props<{ errors: string[] }>()
-);
+// export const getPostitionsActionFailure = createAction(
+//   EPositionsActionTypes.ERROR,
+//   props<{ errors: string[] }>()
+// );
 
 export const deletePositionActionSuccess = createAction(
   EPositionsActionTypes.SUCCESS_DELETE,

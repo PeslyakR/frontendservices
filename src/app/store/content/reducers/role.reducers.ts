@@ -5,7 +5,6 @@ import {
   findRoleAction,
   findRolesAction,
   getRoleActionSuccess,
-  getRolesActionFailure,
   getRolesActionSuccess,
   updateRoleAction,
 } from '../actions/roles.actions';
@@ -65,16 +64,5 @@ export const roleReducer = createReducer(
       ...state,
       roles: action.roles,
     })
-  ),
-  on(
-    getRolesActionFailure,
-    (state, action): IRolesState => ({
-      ...state,
-      validationErrors: action.errors,
-    })
   )
 );
-
-// export function rolesReducers(state: IRolesState, action: Action) {
-//   return contentReducer(state, action);
-// }

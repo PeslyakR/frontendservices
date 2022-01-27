@@ -1,24 +1,15 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { IEmployeeState } from '../types/employees/EmployeeState.interface';
-
-interface IAppEmployeeState {
-  employee: IEmployeeState;
-}
+import { IAppState } from '../types/AppState.interface';
 
 export const employeeFeatureSelector =
-  createFeatureSelector<IAppEmployeeState>('content');
-
-export const validationEmployeeErrorsSelector = createSelector(
-  employeeFeatureSelector,
-  (contentState: IAppEmployeeState) => contentState.employee.validationErrors
-);
+  createFeatureSelector<IAppState>('content');
 
 export const gettingEmployeesSelector = createSelector(
   employeeFeatureSelector,
-  (contentState: IAppEmployeeState) => contentState.employee.employees
+  (contentState: IAppState) => contentState.employee.employees
 );
 
 export const gettingActiveEmployeeSelector = createSelector(
   employeeFeatureSelector,
-  (contentState: IAppEmployeeState) => contentState.employee.activeEmployee
+  (contentState: IAppState) => contentState.employee.activeEmployee
 );

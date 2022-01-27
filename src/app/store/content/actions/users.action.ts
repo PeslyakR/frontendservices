@@ -1,5 +1,4 @@
 import { createAction, props } from '@ngrx/store';
-import { IBackendErrors } from '../../sharedtypes/BackendErrors.interface';
 import { IUser } from '../types/users/User.interface';
 import { EUsersActionTypes } from '../types/users/UsersActionTypes.enum';
 
@@ -29,11 +28,6 @@ export const getUserActionSuccess = createAction(
 );
 
 export const deleteUserActionSuccess = createAction(
-  EUsersActionTypes.DELETE,
+  EUsersActionTypes.SUCCESS_DELETE,
   props<{ deleted: boolean }>()
-);
-
-export const getUserActionFailure = createAction(
-  EUsersActionTypes.ERROR,
-  props<{ errors: string[] }>()
 );

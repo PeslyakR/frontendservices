@@ -38,7 +38,7 @@ export class ActiveServiceFormComponent implements OnInit {
     this.requests$ = this.store.pipe(select(selectAllRequests));
     this.form = this.fb.group({
       id: [''],
-      title: ['', Validators.required, Validators.maxLength(50)],
+      title: ['', [Validators.required, Validators.maxLength(50)]],
       description: [''],
     });
   }

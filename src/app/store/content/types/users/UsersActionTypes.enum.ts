@@ -5,5 +5,4 @@ export enum EUsersActionTypes {
   UPDATE = '[Users]-update',
   SUCCESS_GET_ONE = '[Users]-get-one-success',
   SUCCESS_DELETE = '[Users]-delete-success',
-  ERROR = '[Users]-failure',
 }

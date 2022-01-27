@@ -5,7 +5,7 @@
 
 <form [formGroup]="confirmForm" novalidate (ngSubmit)="onSubmit()">
   <fieldset>
-    <button (click)="showServices()">Изменить сервис</button>
+    <button type="button" (click)="showServices()">Изменить сервис</button>
     <label [ngClass]="{ invisible: !servicesVisible }" for="services"
       >Выберите другой сервис</label
     >
@@ -47,5 +47,5 @@
     ></textarea>
   </fieldset>
 
-  <button type="comment">Сохранить запрос</button>
+  <button type="submit">Сохранить запрос</button>
 </form>

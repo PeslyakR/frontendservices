@@ -8,7 +8,6 @@ import {
   getPositionActionSuccess,
   getPositionsActionSuccess,
   updatePositionAction,
-  getPostitionsActionFailure,
 } from '../actions/positions.action';
 import { IPositionState } from '../types/positions/PositionState.interface';
 
@@ -63,13 +62,6 @@ export const positionReducer = createReducer(
     (state, action): IPositionState => ({
       ...state,
       positions: action.positions,
-    })
-  ),
-  on(
-    getPostitionsActionFailure,
-    (state, action): IPositionState => ({
-      ...state,
-      validationErrors: action.errors,
     })
   ),
   on(

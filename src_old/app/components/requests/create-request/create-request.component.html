@@ -1,0 +1,58 @@
+<p>create-request works!</p>
+
+<h2>
+  запрос на получение доступа для сотрудника {{ (employee$ | async)?.fullName }}
+</h2>
+
+<fieldset>
+  <label for="position">Сервисы</label>
+  <select [(ngModel)]="serviceId">
+    <option disabled [ngValue]="null">сервис не выбран</option>
+    <option *ngFor="let service of services$ | async" [ngValue]="service.id">
+      {{ service.title }}
+    </option>
+  </select>
+</fieldset>
+<form [formGroup]="requestForm" novalidate (ngSubmit)="onSaveRequest()">
+  <fieldset>
+    <label for="header">Имя работника</label>
+    <input type="text" id="header" formControlName="header" />
+    <div
+      class="alert alert-danger"
+      *ngIf="
+        requestForm.controls['header'].invalid &&
+        requestForm.controls['header'].touched
+      "
+    >
+      Поле обязательно для заполнения и не может превышать 50 символов
+    </div>
+  </fieldset>
+
+  <fieldset class="auth-form__field">
+    <label for="body">Описание</label>
+    <textarea
+      formControlName="body"
+      id="body"
+      cols="30"
+      rows="10"
+      placeholder="Суть запроса"
+    ></textarea>
+    <div
+      class="alert alert-danger"
+      *ngIf="
+        requestForm.controls['body'].invalid &&
+        requestForm.controls['body'].touched
+      "
+    >
+      Поле обязательно для заполнения и не может превышать 50 символов
+    </div>
+  </fieldset>
+
+  <button
+    class="btn btn-default"
+    [disabled]="requestForm.invalid"
+    type="submit"
+  >
+    Сохранить запрос
+  </button>
+</form>

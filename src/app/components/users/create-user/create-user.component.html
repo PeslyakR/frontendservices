@@ -1,0 +1,49 @@
+<p>create-user works!</p>
+
+<form [formGroup]="createUserForm" novalidate (ngSubmit)="onSubmit()">
+  <fieldset>
+    <label for="username">Имя пользователя</label>
+    <input
+      type="text"
+      id="username"
+      placeholder="login"
+      formControlName="username"
+    />
+    <div
+      class="alert alert-danger"
+      *ngIf="
+        createUserForm.controls['username'].invalid &&
+        createUserForm.controls['username'].touched
+      "
+    >
+      Поле обязательно для заполнения и не может превышать 50 символов
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <label for="password">Пароль</label>
+    <input
+      type="password"
+      id="password"
+      placeholder="password"
+      formControlName="password"
+    />
+    <div
+      class="alert alert-danger"
+      *ngIf="
+        createUserForm.controls['password'].invalid &&
+        createUserForm.controls['password'].touched
+      "
+    >
+      Поле обязательно для заполнения и не может превышать 50 символов
+    </div>
+  </fieldset>
+
+  <button
+    class="btn btn-default"
+    [disabled]="createUserForm.invalid"
+    type="submit"
+  >
+    Сохранить изменения
+  </button>
+</form>

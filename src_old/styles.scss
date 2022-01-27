@@ -1,0 +1,17 @@
+body {
+  background-color: #c0c0c0;
+}
+.split {
+  display: flex;
+  justify-content: space-between;
+}
+
+input.ng-touched.ng-invalid {
+  border: solid red 2px;
+}
+input.ng-touched.ng-valid {
+  border: solid green 2px;
+}
+.invisible {
+  display: none;
+}

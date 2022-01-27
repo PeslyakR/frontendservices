@@ -1,0 +1,30 @@
+<p>loginform works!</p>
+
+<form class="auth-form" [formGroup]="form" novalidate (ngSubmit)="onSubmit()">
+  <fieldset class="auth-form__field">
+    <label for="name">логин</label>
+    <input
+      type="text"
+      name="name"
+      placeholder="login"
+      formControlName="username"
+    />
+  </fieldset>
+
+  <fieldset class="auth-form__field">
+    <label for="password">логин</label>
+    <input
+      type="password"
+      name="password"
+      placeholder="password"
+      formControlName="password"
+    />
+  </fieldset>
+  <button
+    class="auth-form__btn btn-primary"
+    type="submit"
+    [disabled]="canLogin$ | async"
+  >
+    Sing up
+  </button>
+</form>

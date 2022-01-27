@@ -1,0 +1,40 @@
+<p>create employee</p>
+
+<form [formGroup]="form" novalidate (ngSubmit)="onSubmit()">
+  <fieldset>
+    <label for="fullname">ФИО сотрудника</label>
+    <input
+      type="text"
+      id="fullname"
+      placeholder="Имя Фамилия Отчество"
+      formControlName="fullName"
+    />
+    <div
+      class="alert alert-danger"
+      *ngIf="
+        form.controls['fullName'].invalid && form.controls['fullName'].touched
+      "
+    >
+      Поле обязательно для заполнения и не может превышать 50 символов
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <label for="address">адресс</label>
+    <input
+      type="text"
+      id="address"
+      placeholder="ул. Улица, д.1 кв.1"
+      formControlName="address"
+    />
+  </fieldset>
+
+  <fieldset>
+    <label for="beginWorking">Дата начала работы</label>
+    <input type="date" id="beginWorking" formControlName="beginWorking" />
+  </fieldset>
+
+  <button class="btn btn-default" [disabled]="form.invalid" type="submit">
+    Сохранить изменения
+  </button>
+</form>

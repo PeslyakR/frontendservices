@@ -1,4 +1,4 @@
-import { Action, createReducer, on } from '@ngrx/store';
+import { createReducer, on } from '@ngrx/store';
 import {
   authAction,
   authFailureAction,
@@ -9,7 +9,7 @@ import { IAuthState } from '../types/AuthState.unterface';
 
 const initialState: IAuthState = {
   isSubmitting: false,
-  isLoggedIn: false,
+  isLoggedIn: false, // false,
   validationErrors: null,
   currentUser: null,
 };
@@ -42,9 +42,3 @@ export const authReducer = createReducer(
     })
   )
 );
-
-// export function authReducers(state: IAuthState, action: Action) {
-//   console.log('auth redusers: ', state, '  ++  ', action);
-
-//   return authReducer(state, action);
-// }

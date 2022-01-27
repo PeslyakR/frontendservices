@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { Store } from '@ngrx/store';
 import { catchError, map, of, switchMap } from 'rxjs';
 import { DepsService } from 'src/app/services/deps.service';
 
@@ -10,16 +11,24 @@ import {
   createDepAction,
   getDepActionSuccess,
   getDepsActionSuccess,
-  getDepActionFailure,
+  //getDepActionFailure,
   deleteDepartmentActionSuccess,
   deleteDepAction,
   updateDepAction,
 } from '../actions/departments.actions';
+import {
+  getBackendErrors,
+  releaseBackendErrors,
+} from '../actions/errors.action';
 import { IDepartment } from '../types/departments/Department.interface';
 
 @Injectable()
 export class DepsEffect {
-  constructor(private actions$: Actions, private depsService: DepsService) {}
+  constructor(
+    private actions$: Actions,
+    private depsService: DepsService,
+    private store: Store
+  ) {}
 
   getAllDeps$ = createEffect(() =>
     this.actions$.pipe(
@@ -27,12 +36,11 @@ export class DepsEffect {
       switchMap(() => {
         return this.depsService.getAll().pipe(
           map((departments: IDepartment[]) => {
+            this.store.dispatch(releaseBackendErrors());
             return getDepsActionSuccess({ departments });
           }),
           catchError((errorResponse: HttpErrorResponse) => {
-            return of(
-              getDepActionFailure({ errors: errorResponse.error.errors })
-            );
+            return of(getBackendErrors({ errors: errorResponse.error.errors }));
           })
         );
       })
@@ -45,12 +53,11 @@ export class DepsEffect {
       switchMap(({ id }) => {
         return this.depsService.getById(id).pipe(
           map((department: IDepartment) => {
+            this.store.dispatch(releaseBackendErrors());
             return getDepActionSuccess({ department });
           }),
           catchError((errorResponse: HttpErrorResponse) => {
-            return of(
-              getDepActionFailure({ errors: errorResponse.error.errors })
-            );
+            return of(getBackendErrors({ errors: errorResponse.error.errors }));
           })
         );
       })
@@ -63,12 +70,11 @@ export class DepsEffect {
       switchMap(({ department }) => {
         return this.depsService.create(department).pipe(
           map((department: IDepartment) => {
+            this.store.dispatch(releaseBackendErrors());
             return getDepActionSuccess({ department });
           }),
           catchError((errorResponse: HttpErrorResponse) => {
-            return of(
-              getDepActionFailure({ errors: errorResponse.error.errors })
-            );
+            return of(getBackendErrors({ errors: errorResponse.error.errors }));
           })
         );
       })
@@ -81,12 +87,11 @@ export class DepsEffect {
       switchMap(({ department }) => {
         return this.depsService.update(department).pipe(
           map((department: IDepartment) => {
+            this.store.dispatch(releaseBackendErrors());
             return getDepActionSuccess({ department });
           }),
           catchError((errorResponse: HttpErrorResponse) => {
-            return of(
-              getDepActionFailure({ errors: errorResponse.error.errors })
-            );
+            return of(getBackendErrors({ errors: errorResponse.error.errors }));
           })
         );
       })
@@ -99,12 +104,11 @@ export class DepsEffect {
       switchMap(({ id }) => {
         return this.depsService.delete(id).pipe(
           map((deleted: boolean) => {
+            this.store.dispatch(releaseBackendErrors());
             return deleteDepartmentActionSuccess({ deleted });
           }),
           catchError((errorResponse: HttpErrorResponse) => {
-            return of(
-              getDepActionFailure({ errors: errorResponse.error.errors })
-            );
+            return of(getBackendErrors({ errors: errorResponse.error.errors }));
           })
         );
       })

@@ -37,10 +37,10 @@ export const getEmployeesActionSuccess = createAction(
   props<{ employees: IEmployee[] }>()
 );
 
-export const getEmployeeActionFailure = createAction(
-  EEmployeesActionTypes.ERROR,
-  props<{ errors: string[] }>()
-);
+// export const getEmployeeActionFailure = createAction(
+//   EEmployeesActionTypes.ERROR,
+//   props<{ errors: string[] }>()
+// );
 
 export const deleteEmployeeActionSuccess = createAction(
   EEmployeesActionTypes.SUCCESS_DELETE,

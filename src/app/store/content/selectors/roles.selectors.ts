@@ -1,24 +1,14 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { IRolesState } from '../types/roles/RolesState.interface';
+import { IAppState } from '../types/AppState.interface';
 
-interface IAppRolesState {
-  role: IRolesState;
-}
-
-export const rolesFeatureSelector =
-  createFeatureSelector<IAppRolesState>('content');
-
-export const validationRoleSelector = createSelector(
-  rolesFeatureSelector,
-  (contentState: IAppRolesState) => contentState.role.validationErrors
-);
+export const rolesFeatureSelector = createFeatureSelector<IAppState>('content');
 
 export const selectActiveRole = createSelector(
   rolesFeatureSelector,
-  (contentState: IAppRolesState) => contentState.role.activeRole
+  (contentState: IAppState) => contentState.role.activeRole
 );
 
 export const selectAllRoles = createSelector(
   rolesFeatureSelector,
-  (contentState: IAppRolesState) => contentState.role.roles
+  (contentState: IAppState) => contentState.role.roles
 );

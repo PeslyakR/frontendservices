@@ -7,7 +7,6 @@ import {
   deleteEmployeeAction,
   getEmployeeActionSuccess,
   getEmployeesActionSuccess,
-  getEmployeeActionFailure,
   deleteEmployeeActionSuccess,
 } from '../actions/employees.action';
 import { IEmployeeState } from '../types/employees/EmployeeState.interface';
@@ -68,13 +67,7 @@ export const employeeReducer = createReducer(
       employees: action.employees,
     })
   ),
-  on(
-    getEmployeeActionFailure,
-    (state, action): IEmployeeState => ({
-      ...state,
-      validationErrors: action.errors,
-    })
-  ),
+
   on(
     deleteEmployeeActionSuccess,
     (state, action): IEmployeeState => ({

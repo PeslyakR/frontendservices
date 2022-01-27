@@ -1,8 +1,8 @@
 import { createAction, props } from '@ngrx/store';
-import { IBackendErrors } from '../../sharedtypes/BackendErrors.interface';
 
 import { EDepartmentsActionTypes } from '../types/departments/DepartmentsActionTypes.enum';
 import { IDepartment } from '../types/departments/Department.interface';
+import { EBackendErrorActionTypes } from '../types/errors/BackendErrorsActionType.enum';
 
 export const findDepsAction = createAction(EDepartmentsActionTypes.FINDALL);
 
@@ -36,10 +36,10 @@ export const getDepsActionSuccess = createAction(
   props<{ departments: IDepartment[] }>()
 );
 
-export const getDepActionFailure = createAction(
-  EDepartmentsActionTypes.ERROR,
-  props<{ errors: string[] }>()
-);
+// export const getDepActionFailure = createAction(
+//   EBackendErrorActionTypes.ERROR,
+//   props<{ errors: string[] }>()
+// );
 
 export const deleteDepartmentActionSuccess = createAction(
   EDepartmentsActionTypes.SUCCESS_DELETE,

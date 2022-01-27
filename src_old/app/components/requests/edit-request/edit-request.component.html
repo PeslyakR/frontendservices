@@ -1,0 +1,46 @@
+<p>edit-request works!</p>
+
+<form [formGroup]="reqForm" novalidate (ngSubmit)="onSubmit()">
+  <input type="text" hidden formControlName="id" />
+  <input type="text" hidden formControlName="idAuthor" />
+  <input type="text" hidden formControlName="idService" />
+  <fieldset>
+    <label for="header">Заголовок</label>
+    <input
+      type="text"
+      id="header"
+      placeholder="заголовок запроса"
+      formControlName="header"
+    />
+    <div
+      class="alert alert-danger"
+      *ngIf="
+        reqForm.controls['header'].invalid && reqForm.controls['header'].touched
+      "
+    >
+      Поле обязательно для заполнения и не может превышать 50 символов
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <label for="body">Запрос</label>
+    <input
+      type="text"
+      id="body"
+      placeholder="текст запроса"
+      formControlName="body"
+    />
+    <div
+      class="alert alert-danger"
+      *ngIf="
+        reqForm.controls['body'].invalid && reqForm.controls['body'].touched
+      "
+    >
+      Поле обязательно для заполнения и не может превышать 50 символов
+    </div>
+  </fieldset>
+
+  <button class="btn btn-default" [disabled]="reqForm.invalid" type="submit">
+    Редактировать
+  </button>
+</form>

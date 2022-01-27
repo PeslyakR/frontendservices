@@ -1,9 +1,13 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { Store } from '@ngrx/store';
 import { catchError, map, of, switchMap } from 'rxjs';
 import { ServicesService } from 'src/app/services/services.service';
-import { getDepActionFailure } from '../actions/departments.actions';
+import {
+  getBackendErrors,
+  releaseBackendErrors,
+} from '../actions/errors.action';
 import {
   createServiceAction,
   deleteServiceActionSuccess,
@@ -20,7 +24,8 @@ import { IService } from '../types/services/Service.interface';
 export class ServicesEffect {
   constructor(
     private actions$: Actions,
-    private serviceService: ServicesService
+    private serviceService: ServicesService,
+    private store: Store
   ) {}
 
   getAllServices$ = createEffect(() =>
@@ -29,12 +34,11 @@ export class ServicesEffect {
       switchMap(() => {
         return this.serviceService.getAll().pipe(
           map((services: IService[]) => {
+            this.store.dispatch(releaseBackendErrors());
             return getServicesActionSuccess({ services });
           }),
           catchError((errorResponse: HttpErrorResponse) => {
-            return of(
-              getDepActionFailure({ errors: errorResponse.error.errors })
-            );
+            return of(getBackendErrors({ errors: errorResponse.error.errors }));
           })
         );
       })
@@ -47,12 +51,11 @@ export class ServicesEffect {
       switchMap(({ id }) => {
         return this.serviceService.getById(id).pipe(
           map((service: IService) => {
+            this.store.dispatch(releaseBackendErrors());
             return getServiceActionSuccess({ service });
           }),
           catchError((errorResponse: HttpErrorResponse) => {
-            return of(
-              getDepActionFailure({ errors: errorResponse.error.errors })
-            );
+            return of(getBackendErrors({ errors: errorResponse.error.errors }));
           })
         );
       })
@@ -65,12 +68,11 @@ export class ServicesEffect {
       switchMap(({ service }) => {
         return this.serviceService.create(service).pipe(
           map((service: IService) => {
+            this.store.dispatch(releaseBackendErrors());
             return getServiceActionSuccess({ service });
           }),
           catchError((errorResponse: HttpErrorResponse) => {
-            return of(
-              getDepActionFailure({ errors: errorResponse.error.errors })
-            );
+            return of(getBackendErrors({ errors: errorResponse.error.errors }));
           })
         );
       })
@@ -83,12 +85,11 @@ export class ServicesEffect {
       switchMap(({ service }) => {
         return this.serviceService.update(service).pipe(
           map((service: IService) => {
+            this.store.dispatch(releaseBackendErrors());
             return getServiceActionSuccess({ service });
           }),
           catchError((errorResponse: HttpErrorResponse) => {
-            return of(
-              getDepActionFailure({ errors: errorResponse.error.errors })
-            );
+            return of(getBackendErrors({ errors: errorResponse.error.errors }));
           })
         );
       })
@@ -101,12 +102,11 @@ export class ServicesEffect {
       switchMap(({ id }) => {
         return this.serviceService.delete(id).pipe(
           map((deleted: boolean) => {
+            this.store.dispatch(releaseBackendErrors());
             return deleteServiceActionSuccess({ deleted });
           }),
           catchError((errorResponse: HttpErrorResponse) => {
-            return of(
-              getDepActionFailure({ errors: errorResponse.error.errors })
-            );
+            return of(getBackendErrors({ errors: errorResponse.error.errors }));
           })
         );
       })

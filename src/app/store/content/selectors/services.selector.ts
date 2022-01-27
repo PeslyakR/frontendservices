@@ -1,24 +1,20 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { IServiceState } from '../types/services/ServicesState.interface';
-
-interface IAppServicesState {
-  service: IServiceState;
-}
+import { IAppState } from '../types/AppState.interface';
 
 export const servicesFeatureSelector =
-  createFeatureSelector<IAppServicesState>('content');
+  createFeatureSelector<IAppState>('content');
 
 export const validationServiceSelector = createSelector(
   servicesFeatureSelector,
-  (contentState: IAppServicesState) => contentState.service.validationErrors
+  (contentState: IAppState) => contentState.service.validationErrors
 );
 
 export const selectActiveService = createSelector(
   servicesFeatureSelector,
-  (contentState: IAppServicesState) => contentState.service.activeService
+  (contentState: IAppState) => contentState.service.activeService
 );
 
 export const selectAllServices = createSelector(
   servicesFeatureSelector,
-  (contentState: IAppServicesState) => contentState.service.services
+  (contentState: IAppState) => contentState.service.services
 );

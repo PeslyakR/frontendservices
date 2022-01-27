@@ -10,7 +10,6 @@ import {
 } from 'src/app/store/content/actions/roles.actions';
 import { selectActiveRole } from 'src/app/store/content/selectors/roles.selectors';
 import { IRole } from 'src/app/store/content/types/roles/Role.interface';
-import { IBackendErrors } from 'src/app/store/sharedtypes/BackendErrors.interface';
 
 @Component({
   selector: 'app-edit-role',
@@ -19,7 +18,6 @@ import { IBackendErrors } from 'src/app/store/sharedtypes/BackendErrors.interfac
 })
 export class EditRoleComponent implements OnInit {
   form!: FormGroup;
-  backendErrors$!: Observable<IBackendErrors | undefined>;
   id?: number;
   serviceId?: number;
   updated?: string;
@@ -40,8 +38,8 @@ export class EditRoleComponent implements OnInit {
       this.serviceId = role?.serviceId;
       this.updated = role?.updated;
       this.form = this.fb.group({
-        title: [role?.title, Validators.required],
-        name: [role?.name, Validators.required],
+        title: ['', [Validators.required, Validators.maxLength(50)]],
+        name: ['', [Validators.required, Validators.maxLength(50)]],
         description: [role?.description],
       });
     });
@@ -58,7 +56,7 @@ export class EditRoleComponent implements OnInit {
     };
 
     this.store.dispatch(updateRoleAction({ role }));
-    this.router.navigate(['/services']);
+    this.router.navigate(['/response']);
   }
 
   ngOnInit(): void {}
@@ -67,6 +65,6 @@ export class EditRoleComponent implements OnInit {
     this.store.dispatch(
       deleteRoleAction({ id: this.route.snapshot.params['id'] })
     );
-    this.router.navigate(['/services']);
+    this.router.navigate(['/response']);
   }
 }

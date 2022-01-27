@@ -1,4 +1,3 @@
-import { IBackendErrors } from 'src/app/store/sharedtypes/BackendErrors.interface';
 import { IDepartment } from './Department.interface';
 
 export interface IDepartmentsState {
@@ -6,6 +5,6 @@ export interface IDepartmentsState {
   activeDepartment?: IDepartment;
 
   //////
-  validationErrors?: string[];
+  //validationErrors?: string[];
   deletedDepartment?: boolean;
 }

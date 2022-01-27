@@ -1,1 +1,13 @@
-<p>Операция прошла успешно!</p>
+<div
+  *ngIf="(errors$ | async) === undefined; then success; else badRequest"
+></div>
+<ng-template #success>
+  <p>Операция прошла успешно!</p>
+</ng-template>
+
+<ng-template #badRequest>
+  <p>Операция не выполнена.</p>
+  <ul>
+    <li *ngFor="let err of errors$ | async">{{ err }}</li>
+  </ul>
+</ng-template>

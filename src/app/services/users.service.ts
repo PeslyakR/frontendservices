@@ -25,14 +25,15 @@ export class UsersService {
     const url = environment.baseUrl + '/api/users/register';
     const token = this.persistanceService.get('accessToken');
     const headers = new HttpHeaders().set('Authorization', token);
+    console.log('----> user', user);
 
     return this.httpClient
       .post<IUser>(
         url,
         {
-          title: user.login,
+          username: user.username,
           password: user.password,
-          idEmployee: user.employeeId,
+          idEmployee: user.idEmployee,
         },
         { headers }
       )
@@ -47,16 +48,17 @@ export class UsersService {
     return this.httpClient
       .post<IUser>(
         url,
-        { id: user.id, title: user.login, password: user.password },
+        { id: user.id, username: user.username, password: user.password },
         { headers }
       )
       .pipe(map((response: IUser) => response));
   }
 
   delete(id: number): Observable<boolean> {
-    const url = environment.baseUrl + '/api/users/update';
+    const url = environment.baseUrl + '/api/users/delete/' + id;
     const token = this.persistanceService.get('accessToken');
     const headers = new HttpHeaders().set('Authorization', token);
+    console.log('id ', id, 'yol ', url);
 
     return this.httpClient
       .delete<boolean>(url, { headers })

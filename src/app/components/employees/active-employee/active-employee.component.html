@@ -3,6 +3,20 @@
 <h2>{{ (employee$ | async)?.fullName }}</h2>
 <p>{{ (employee$ | async)?.address }}</p>
 <p>{{ (employee$ | async)?.beginWorking | date: "" }}</p>
+
+<p>Аккаунт доступа к сервису:</p>
+<div
+  *ngIf="(employee$ | async)?.username === null; then noUser; else existsUser"
+></div>
+<ng-template #noUser>
+  <a routerLink="/newuser/{{ (employee$ | async)?.id }}">добавить позователя</a>
+</ng-template>
+<ng-template #existsUser>
+  <p>Пользователь: {{ (employee$ | async)?.username }}</p>
+
+  <button (click)="deleteUser()">удалить пользователя</button>
+</ng-template>
+
 <p>Доступные задачи</p>
 <button (click)="editEmployee()">редактировать</button>
 <button [ngClass]="{ invisible: !formVisible }" (click)="deleteEmplooyee()">

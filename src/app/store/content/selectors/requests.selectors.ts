@@ -1,24 +1,15 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { IRequestsState } from '../types/requests/RequestsState.interface';
-
-interface IAppRequestsState {
-  request: IRequestsState;
-}
+import { IAppState } from '../types/AppState.interface';
 
 export const requestsFeatureSelector =
-  createFeatureSelector<IAppRequestsState>('content');
-
-export const selectRequestsErrors = createSelector(
-  requestsFeatureSelector,
-  (contentState: IAppRequestsState) => contentState.request.validationErrors
-);
+  createFeatureSelector<IAppState>('content');
 
 export const selectRequest = createSelector(
   requestsFeatureSelector,
-  (contentState: IAppRequestsState) => contentState.request.activeRequest
+  (contentState: IAppState) => contentState.request.activeRequest
 );
 
 export const selectAllRequests = createSelector(
   requestsFeatureSelector,
-  (contentState: IAppRequestsState) => contentState.request.requests
+  (contentState: IAppState) => contentState.request.requests
 );

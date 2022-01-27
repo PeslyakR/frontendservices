@@ -8,7 +8,6 @@ import {
   findRequestsAction,
   findRequestsForConfirmingAction,
   getRequestActionSuccess,
-  getRequestsActionFailure,
   getRequestsActionSuccess,
   updateRequestAction,
 } from '../actions/requests.action';
@@ -83,13 +82,7 @@ export const requestReducer = createReducer(
       requests: action.requests,
     })
   ),
-  on(
-    getRequestsActionFailure,
-    (state, action): IRequestsState => ({
-      ...state,
-      validationErrors: action.errors,
-    })
-  ),
+
   on(
     deleteRequestActionSuccess,
     (state, action): IRequestsState => ({
@@ -99,7 +92,3 @@ export const requestReducer = createReducer(
     })
   )
 );
-
-// export function requestsReducers(state: IRequestsState, action: Action) {
-//   return contentReducer(state, action);
-// }

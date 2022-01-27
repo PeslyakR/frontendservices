@@ -11,16 +11,24 @@ import {
   confirmRequestAction,
   getRequestActionSuccess,
   getRequestsActionSuccess,
-  getRequestsActionFailure,
   findRequestsForConfirmingAction,
 } from '../actions/requests.action';
 import { IRequest } from '../types/requests/Request.interface';
 import { HttpErrorResponse } from '@angular/common/http';
 import { catchError, map, of, switchMap } from 'rxjs';
+import {
+  getBackendErrors,
+  releaseBackendErrors,
+} from '../actions/errors.action';
+import { Store } from '@ngrx/store';
 
 @Injectable()
 export class RequestsEffect {
-  constructor(private actions$: Actions, private reqService: RequestsService) {}
+  constructor(
+    private actions$: Actions,
+    private reqService: RequestsService,
+    private store: Store
+  ) {}
 
   getAllRequests$ = createEffect(() =>
     this.actions$.pipe(
@@ -28,12 +36,11 @@ export class RequestsEffect {
       switchMap(({ id }) => {
         return this.reqService.getAllById(id).pipe(
           map((requests: IRequest[]) => {
+            this.store.dispatch(releaseBackendErrors());
             return getRequestsActionSuccess({ requests });
           }),
           catchError((errorResponse: HttpErrorResponse) => {
-            return of(
-              getRequestsActionFailure({ errors: errorResponse.error.errors })
-            );
+            return of(getBackendErrors({ errors: errorResponse.error.errors }));
           })
         );
       })
@@ -46,12 +53,11 @@ export class RequestsEffect {
       switchMap(({ idEmp }) => {
         return this.reqService.getAllForConfirming(idEmp).pipe(
           map((requests: IRequest[]) => {
+            this.store.dispatch(releaseBackendErrors());
             return getRequestsActionSuccess({ requests });
           }),
           catchError((errorResponse: HttpErrorResponse) => {
-            return of(
-              getRequestsActionFailure({ errors: errorResponse.error.errors })
-            );
+            return of(getBackendErrors({ errors: errorResponse.error.errors }));
           })
         );
       })
@@ -64,12 +70,11 @@ export class RequestsEffect {
       switchMap(({ id }) => {
         return this.reqService.getById(id).pipe(
           map((request: IRequest) => {
+            this.store.dispatch(releaseBackendErrors());
             return getRequestActionSuccess({ request });
           }),
           catchError((errorResponse: HttpErrorResponse) => {
-            return of(
-              getRequestsActionFailure({ errors: errorResponse.error.errors })
-            );
+            return of(getBackendErrors({ errors: errorResponse.error.errors }));
           })
         );
       })
@@ -83,11 +88,12 @@ export class RequestsEffect {
         if (this.reqHeader == request.header) {
           return this.reqService.getById(request.id!).pipe(
             map((request: IRequest) => {
+              this.store.dispatch(releaseBackendErrors());
               return getRequestActionSuccess({ request });
             }),
             catchError((errorResponse: HttpErrorResponse) => {
               return of(
-                getRequestsActionFailure({ errors: errorResponse.error.errors })
+                getBackendErrors({ errors: errorResponse.error.errors })
               );
             })
           );
@@ -95,12 +101,11 @@ export class RequestsEffect {
         this.reqHeader = request.header;
         return this.reqService.createReq(request).pipe(
           map((request: IRequest) => {
+            this.store.dispatch(releaseBackendErrors());
             return getRequestActionSuccess({ request });
           }),
           catchError((errorResponse: HttpErrorResponse) => {
-            return of(
-              getRequestsActionFailure({ errors: errorResponse.error.errors })
-            );
+            return of(getBackendErrors({ errors: errorResponse.error.errors }));
           })
         );
       })
@@ -113,12 +118,11 @@ export class RequestsEffect {
       switchMap(({ confirmRequest }) => {
         return this.reqService.confirmRequest(confirmRequest).pipe(
           map((request: IRequest) => {
+            this.store.dispatch(releaseBackendErrors());
             return getRequestActionSuccess({ request });
           }),
           catchError((errorResponse: HttpErrorResponse) => {
-            return of(
-              getRequestsActionFailure({ errors: errorResponse.error.errors })
-            );
+            return of(getBackendErrors({ errors: errorResponse.error.errors }));
           })
         );
       })
@@ -131,12 +135,11 @@ export class RequestsEffect {
       switchMap(({ request }) => {
         return this.reqService.update(request).pipe(
           map((request: IRequest) => {
+            this.store.dispatch(releaseBackendErrors());
             return getRequestActionSuccess({ request });
           }),
           catchError((errorResponse: HttpErrorResponse) => {
-            return of(
-              getRequestsActionFailure({ errors: errorResponse.error.errors })
-            );
+            return of(getBackendErrors({ errors: errorResponse.error.errors }));
           })
         );
       })
@@ -149,12 +152,11 @@ export class RequestsEffect {
       switchMap(({ id }) => {
         return this.reqService.delete(id).pipe(
           map((deleted: boolean) => {
+            this.store.dispatch(releaseBackendErrors());
             return deleteRequestActionSuccess({ deleted });
           }),
           catchError((errorResponse: HttpErrorResponse) => {
-            return of(
-              getRequestsActionFailure({ errors: errorResponse.error.errors })
-            );
+            return of(getBackendErrors({ errors: errorResponse.error.errors }));
           })
         );
       })

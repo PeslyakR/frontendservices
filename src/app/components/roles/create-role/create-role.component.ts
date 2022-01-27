@@ -5,7 +5,6 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { createRoleAction } from 'src/app/store/content/actions/roles.actions';
 import { IRole } from 'src/app/store/content/types/roles/Role.interface';
-import { IBackendErrors } from 'src/app/store/sharedtypes/BackendErrors.interface';
 
 @Component({
   selector: 'app-create-role',
@@ -14,7 +13,6 @@ import { IBackendErrors } from 'src/app/store/sharedtypes/BackendErrors.interfac
 })
 export class CreateRoleComponent implements OnInit {
   form!: FormGroup;
-  backendErrors$!: Observable<IBackendErrors | undefined>;
 
   constructor(
     private fb: FormBuilder,
@@ -23,8 +21,8 @@ export class CreateRoleComponent implements OnInit {
     private router: Router
   ) {
     this.form = this.fb.group({
-      title: ['', Validators.required, Validators.maxLength(50)],
-      name: ['', Validators.required, Validators.maxLength(50)],
+      title: ['', [Validators.required, Validators.maxLength(50)]],
+      name: ['', [Validators.required, Validators.maxLength(50)]],
       description: [''],
     });
   }

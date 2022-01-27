@@ -1,26 +1,14 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { IDepartmentsState } from '../types/departments/DepartmentsState.interface';
+import { IAppState } from '../types/AppState.interface';
 
-interface IAppDepartmentsState {
-  department: IDepartmentsState;
-}
-
-export const depsFeatureSelector =
-  createFeatureSelector<IAppDepartmentsState>('content');
-
-export const validationDepsErrorsSelector = createSelector(
-  depsFeatureSelector,
-  (contentState: IAppDepartmentsState) =>
-    contentState.department.validationErrors
-);
+export const depsFeatureSelector = createFeatureSelector<IAppState>('content');
 
 export const gettingDepartmentsSelector = createSelector(
   depsFeatureSelector,
-  (contentState: IAppDepartmentsState) => contentState.department.departments
+  (contentState: IAppState) => contentState.department.departments
 );
 
 export const gettingActiveDepartmentSelector = createSelector(
   depsFeatureSelector,
-  (contentState: IAppDepartmentsState) =>
-    contentState.department.activeDepartment
+  (contentState: IAppState) => contentState.department.activeDepartment
 );
