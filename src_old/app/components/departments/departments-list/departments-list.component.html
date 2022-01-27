@@ -1,7 +1,0 @@
-<p>LIST OF ALL DEPARTAMENTS (NAMES) and (DESCRIPTIONS)</p>
-<a routerLink="/department">add new dep</a>
-<ul>
-  <li *ngFor="let dep of depatments$ | async">
-    <a routerLink="/department/{{ dep.id }}/"> {{ dep.title }} </a>
-  </li>
-</ul>

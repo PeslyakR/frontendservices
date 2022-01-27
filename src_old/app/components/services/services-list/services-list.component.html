@@ -1,7 +1,0 @@
-<button routerLink="/service">add new serv</button>
-
-<ul>
-  <li *ngFor="let service of servicesList$ | async">
-    <a routerLink="/service/{{ service.id }}">{{ service.title }}</a>
-  </li>
-</ul>
