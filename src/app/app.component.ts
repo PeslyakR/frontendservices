@@ -13,7 +13,6 @@ import { findServicesAction } from './store/content/actions/services.actions';
 })
 export class AppComponent {
   isAuthorized: Observable<boolean>;
-  title = 'frontendservices';
   constructor(private store: Store, private router: Router) {
     this.store.dispatch(findServicesAction());
     this.store.dispatch(findDepsAction());

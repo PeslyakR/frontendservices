@@ -47,7 +47,7 @@ export class CreateRequestComponent implements OnInit {
         idAuthor: e!.id!,
       };
       this.store.dispatch(createRequestAction({ request }));
-      this.router.navigate(['/response']);
+      // this.router.navigate(['/response']);
     });
   }
 }
