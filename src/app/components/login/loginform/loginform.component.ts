@@ -9,7 +9,7 @@ import {
   validationErrorsSelector,
 } from 'src/app/store/auth/selectors/selectors';
 import { IBackendErrors } from 'src/app/store/content/types/errors/BackendErrors.interface';
-import { ILoginData } from '../types/LoginData.interface';
+import { ILoginData } from '../../../store/auth/types/LoginData.interface';
 
 @Component({
   selector: 'app-loginform',

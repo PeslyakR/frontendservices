@@ -36,28 +36,24 @@ export const requestReducer = createReducer(
     findRequestsAction,
     (state): IRequestsState => ({
       ...state,
-      //  validationErrors: undefined,
     })
   ),
   on(
     confirmRequestAction,
     (state): IRequestsState => ({
       ...state,
-      // validationErrors: undefined,
     })
   ),
   on(
     createRequestAction,
     (state): IRequestsState => ({
       ...state,
-      // validationErrors: undefined,
     })
   ),
   on(
     updateRequestAction,
     (state): IRequestsState => ({
       ...state,
-      // validationErrors: undefined,
     })
   ),
   on(
@@ -70,7 +66,6 @@ export const requestReducer = createReducer(
     getRequestActionSuccess,
     (state, action): IRequestsState => ({
       ...state,
-      validationErrors: undefined,
       activeRequest: action.request,
     })
   ),
@@ -78,7 +73,6 @@ export const requestReducer = createReducer(
     getRequestsActionSuccess,
     (state, action): IRequestsState => ({
       ...state,
-      validationErrors: undefined,
       requests: action.requests,
     })
   ),
@@ -87,7 +81,6 @@ export const requestReducer = createReducer(
     deleteRequestActionSuccess,
     (state, action): IRequestsState => ({
       ...state,
-      validationErrors: undefined,
       deletedRequest: action.deleted,
     })
   )

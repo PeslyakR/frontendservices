@@ -57,10 +57,6 @@ export class RequestsService {
 
     const token = this.persistanceService.get('accessToken');
     const headers = new HttpHeaders().set('Authorization', token);
-    console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
-
-    console.log('create Request ------- ', request);
-
     return this.httpClient
       .post<IRequest>(
         url,
@@ -81,7 +77,6 @@ export class RequestsService {
 
   update(request: IRequest): Observable<IRequest> {
     const url = environment.baseUrl + '/api/requests/update';
-    console.log('update req ', request);
 
     const token = this.persistanceService.get('accessToken');
     const headers = new HttpHeaders().set('Authorization', token);
@@ -121,7 +116,6 @@ export class RequestsService {
 
     const token = this.persistanceService.get('accessToken');
     const headers = new HttpHeaders().set('Authorization', token);
-    console.log('-------------------confirmRequest     ', confirmRequest);
 
     return this.httpClient
       .put<IRequest>(

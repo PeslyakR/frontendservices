@@ -33,8 +33,6 @@ export class EditRoleComponent implements OnInit {
     );
     this.store.pipe(select(selectActiveRole)).subscribe((role) => {
       this.id = role?.id;
-      console.log('selector role ', role);
-
       this.serviceId = role?.serviceId;
       this.updated = role?.updated;
       this.form = this.fb.group({

@@ -2,8 +2,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, of, switchMap } from 'rxjs';
-import { AuthService } from 'src/app/components/login/services/auth.service';
-import { ICurrentUser } from 'src/app/components/login/types/CurrentUser.interface';
+import { AuthService } from 'src/app/services/auth.service';
+import { ICurrentUser } from 'src/app/store/auth/types/CurrentUser.interface';
 import { PersistanceService } from 'src/app/shared/PersistanseService';
 import {
   authAction,

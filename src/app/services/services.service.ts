@@ -54,7 +54,6 @@ export class ServicesService {
     const url = environment.baseUrl + '/api/services/update';
     const token = this.persistanceService.get('accessToken');
     const headers = new HttpHeaders().set('Authorization', token);
-    console.log('service ', service);
     return this.httpClient
       .post<IService>(
         url,

@@ -1,5 +1,5 @@
-<p>LIST OF ALL DEPARTAMENTS (NAMES) and (DESCRIPTIONS)</p>
-<a routerLink="/department">add new dep</a>
+<p>Список всех внесенных подразделений</p>
+<a routerLink="/department">Добавить подразделение</a>
 <ul>
   <li *ngFor="let dep of depatments$ | async">
     <a routerLink="/department/{{ dep.id }}/"> {{ dep.title }} </a>

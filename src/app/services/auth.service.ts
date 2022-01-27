@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { ILoginData } from '../types/LoginData.interface';
+import { ILoginData } from '../store/auth/types/LoginData.interface';
 import { map, Observable } from 'rxjs';
-import { ICurrentUser } from 'src/app/components/login/types/CurrentUser.interface';
+import { ICurrentUser } from 'src/app/store/auth/types/CurrentUser.interface';
 
 @Injectable()
 export class AuthService {
@@ -12,8 +12,6 @@ export class AuthService {
   private url = environment.baseUrl + '/api/login';
 
   login(authdata: ILoginData): Observable<ICurrentUser> {
-    console.log('AuthService ', authdata);
-
     let body = new URLSearchParams();
     body.set('username', authdata.username);
     body.set('password', authdata.password);

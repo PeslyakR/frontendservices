@@ -55,7 +55,6 @@ export class PositionsService {
     const url = environment.baseUrl + '/api/positions/update';
     const token = this.persistanceService.get('accessToken');
     const headers = new HttpHeaders().set('Authorization', token);
-    console.log('update position ', position);
 
     return this.httpClient
       .post<IPosition>(
@@ -72,8 +71,6 @@ export class PositionsService {
   }
 
   delete(id: number): Observable<boolean> {
-    console.log('delete position ', id);
-
     const url = environment.baseUrl + '/api/positions/delete/' + id;
     const token = this.persistanceService.get('accessToken');
     const headers = new HttpHeaders().set('Authorization', token);

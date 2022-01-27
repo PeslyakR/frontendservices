@@ -16,7 +16,6 @@ export class DepsService {
     const url = environment.baseUrl + '/api/departments/findall';
     const token = this.persistanceService.get('accessToken');
     const headers = new HttpHeaders().set('Authorization', token);
-    console.log('headers ', headers);
 
     return this.httpClient.get<IDepartment[]>(url, { headers: headers }).pipe(
       map((response: IDepartment[]) => {

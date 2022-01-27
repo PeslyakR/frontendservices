@@ -1,6 +1,4 @@
-<p>confirm-requests-list works!</p>
-
-<a routerLink="/addrequest">add new req</a>
+<a routerLink="/addrequest">Создать запрос</a>
 <ul>
   <li *ngFor="let req of requests$ | async">
     <a routerLink="/confirm" (click)="confirmRequest(req.id!)">

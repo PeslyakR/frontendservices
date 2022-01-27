@@ -49,10 +49,6 @@ export class EditPositionComponent implements OnInit {
   }
 
   onDeletePosition(): void {
-    console.log(
-      'this.editPositionForm.value.id ',
-      this.editPositionForm.value.id
-    );
     this.store.dispatch(
       deletePositionAction({ id: this.editPositionForm.value.id })
     );

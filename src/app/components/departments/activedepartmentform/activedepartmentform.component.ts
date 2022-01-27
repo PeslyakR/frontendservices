@@ -41,11 +41,8 @@ export class ActivedepartmentformComponent implements OnInit {
     this.store
       .pipe(select(gettingActiveDepartmentSelector))
       .subscribe((dep) => {
-        console.log('next', dep);
         this.department$ = dep;
       });
-
-    console.log('dep ', this.department$);
   }
 
   onDelete(): void {

@@ -72,9 +72,3 @@ export const positionReducer = createReducer(
     })
   )
 );
-
-// export function positionsReducers(state: IPositionState, action: Action) {
-//   console.log('positionReducers');
-
-//   return contentReducer(state, action);
-// }

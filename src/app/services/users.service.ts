@@ -25,7 +25,6 @@ export class UsersService {
     const url = environment.baseUrl + '/api/users/register';
     const token = this.persistanceService.get('accessToken');
     const headers = new HttpHeaders().set('Authorization', token);
-    console.log('----> user', user);
 
     return this.httpClient
       .post<IUser>(
@@ -58,7 +57,6 @@ export class UsersService {
     const url = environment.baseUrl + '/api/users/delete/' + id;
     const token = this.persistanceService.get('accessToken');
     const headers = new HttpHeaders().set('Authorization', token);
-    console.log('id ', id, 'yol ', url);
 
     return this.httpClient
       .delete<boolean>(url, { headers })

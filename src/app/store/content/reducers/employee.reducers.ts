@@ -22,35 +22,30 @@ export const employeeReducer = createReducer(
     findEmployeeAction,
     (state): IEmployeeState => ({
       ...state,
-      //validationErrors: undefined,
     })
   ),
   on(
     findEmployeesAction,
     (state): IEmployeeState => ({
       ...state,
-      // validationErrors: undefined,
     })
   ),
   on(
     createEmployeeAction,
     (state): IEmployeeState => ({
       ...state,
-      // validationErrors: undefined,
     })
   ),
   on(
     updateEmployeeAction,
     (state): IEmployeeState => ({
       ...state,
-      //validationErrors: undefined,
     })
   ),
   on(
     deleteEmployeeAction,
     (state): IEmployeeState => ({
       ...state,
-      // validationErrors: undefined,
     })
   ),
   on(
@@ -76,7 +71,3 @@ export const employeeReducer = createReducer(
     })
   )
 );
-
-// export function employeesReducers(state: IEmployeeState, action: Action) {
-//   return contentReducer(state, action);
-// }

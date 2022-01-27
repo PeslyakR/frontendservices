@@ -6,7 +6,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { PersistanceService } from 'src/app/shared/PersistanseService';
 import { AuthEffect } from 'src/app/store/auth/effects/auth.effect';
 import { LoginformComponent } from './loginform/loginform.component';
-import { AuthService } from './services/auth.service';
+import { AuthService } from '../../services/auth.service';
 
 const routes = [
   {

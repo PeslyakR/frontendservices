@@ -36,7 +36,6 @@ export class EmployeesService {
     const url = environment.baseUrl + '/api/employees/create';
     const token = this.persistanceService.get('accessToken');
     const headers = new HttpHeaders().set('Authorization', token);
-    console.log('EMPLOYEE ', employee);
 
     return this.httpClient
       .post<IEmployee>(
@@ -76,7 +75,6 @@ export class EmployeesService {
     const url = environment.baseUrl + '/api/employees/delete/' + id;
     const token = this.persistanceService.get('accessToken');
     const headers = new HttpHeaders().set('Authorization', token);
-    console.log('delete ', id);
 
     return this.httpClient
       .delete<boolean>(url, { headers })

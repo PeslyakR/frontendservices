@@ -1,9 +1,9 @@
 <h2>{{ (service$ | async)?.title }}</h2>
 <p>Краткая информация об сервисе: {{ (service$ | async)?.description }}</p>
 
-<button (click)="onDelete()">delete</button>
+<button (click)="onDelete()">удалить</button>
 
-<button (click)="editeService()">edit</button>
+<button (click)="editeService()">изменить</button>
 
 <div
   *ngIf="(service$ | async)?.roles?.length !== 0; then listRoles; else noRoles"
@@ -27,13 +27,15 @@
       </tr>
     </tbody>
     <tfoot>
-      <button routerLink="/role/{{ (service$ | async)?.id }}">add Role</button>
+      <button routerLink="/role/{{ (service$ | async)?.id }}">
+        Добавить роль
+      </button>
     </tfoot>
   </table>
 </ng-template>
 <ng-template #noRoles>
-  <p>нету дступных ролей</p>
-  <button routerLink="/role/{{ (service$ | async)?.id }}">add Role</button>
+  <p>нету доступных ролей</p>
+  <button routerLink="/role/{{ (service$ | async)?.id }}">Создать роль</button>
 </ng-template>
 
 <div [ngClass]="{ invisible: !formVisible }">

@@ -1,5 +1,3 @@
-<p>active employee</p>
-
 <h2>{{ (employee$ | async)?.fullName }}</h2>
 <p>{{ (employee$ | async)?.address }}</p>
 <p>{{ (employee$ | async)?.beginWorking | date: "" }}</p>
@@ -65,7 +63,7 @@
     </fieldset>
 
     <fieldset>
-      <label for="address">адресс:</label>
+      <label for="address">адреса:</label>
       <input type="text" id="address" formControlName="address" />
     </fieldset>
 

@@ -31,8 +31,6 @@ export class EditRequestComponent implements OnInit {
   }
 
   onSubmit(): void {
-    console.log('idAuthor ', this.reqForm.value.idService);
-    console.log('idserv ', this.reqForm.value.idAuthor);
     const request: IRequest = {
       header: this.reqForm.value.header,
       body: this.reqForm.value.body,

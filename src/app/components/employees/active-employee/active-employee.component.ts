@@ -53,8 +53,6 @@ export class ActiveEmployeeComponent implements OnInit {
 
   deleteUser(): void {
     this.employee$.subscribe((e) => {
-      console.log(e?.idUser!);
-
       this.store.dispatch(deleteUserAction({ id: e?.idUser! }));
     });
 

@@ -12,7 +12,6 @@ import { IServiceState } from '../types/services/ServicesState.interface';
 
 const initialState: IServiceState = {
   services: [],
-  validationErrors: undefined,
 };
 
 export const serviceReducer = createReducer(
@@ -21,35 +20,30 @@ export const serviceReducer = createReducer(
     findServiceAction,
     (state): IServiceState => ({
       ...state,
-      validationErrors: undefined,
     })
   ),
   on(
     findServicesAction,
     (state): IServiceState => ({
       ...state,
-      validationErrors: undefined,
     })
   ),
   on(
     createServiceAction,
     (state): IServiceState => ({
       ...state,
-      validationErrors: undefined,
     })
   ),
   on(
     updateServiceAction,
     (state): IServiceState => ({
       ...state,
-      validationErrors: undefined,
     })
   ),
   on(
     deleteServiceAction,
     (state): IServiceState => ({
       ...state,
-      validationErrors: undefined,
     })
   ),
   on(

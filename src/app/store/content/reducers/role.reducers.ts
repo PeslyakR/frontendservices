@@ -20,35 +20,30 @@ export const roleReducer = createReducer(
     findRoleAction,
     (state): IRolesState => ({
       ...state,
-      validationErrors: undefined,
     })
   ),
   on(
     findRolesAction,
     (state): IRolesState => ({
       ...state,
-      validationErrors: undefined,
     })
   ),
   on(
     createRoleAction,
     (state): IRolesState => ({
       ...state,
-      validationErrors: undefined,
     })
   ),
   on(
     updateRoleAction,
     (state): IRolesState => ({
       ...state,
-      validationErrors: undefined,
     })
   ),
   on(
     deleteRoleAction,
     (state): IRolesState => ({
       ...state,
-      validationErrors: undefined,
     })
   ),
   on(
